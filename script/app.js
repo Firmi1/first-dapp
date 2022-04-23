@@ -19,7 +19,7 @@ async function main() {
   const signer = provider.getSigner();
   let userAddress = await signer.getAddress();
   document.getElementById("userAddress").innerText =
-    userAddress.slice(0, 8) + "...";
+    userAddress;
 
   /*======
     INITIALIZING CONTRACT
@@ -27,7 +27,7 @@ async function main() {
   const usdcContract = new ethers.Contract(usdc.address, usdc.abi, signer);
 
   let contractName = await usdcContract.name();
-  // document.getElementById("contractName").innerText = contractName;
+  document.getElementById("contractName").innerText = contractName;
   let usdcBalance = await usdcContract.balanceOf(userAddress);
   usdcBalance = ethers.utils.formatUnits(usdcBalance, 6);
   document.getElementById("usdcBalance").innerText = usdcBalance;
