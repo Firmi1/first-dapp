@@ -4,7 +4,7 @@ const usdc = {
   address: "0x9f395d2c0B25Cc91D78026E4965Bab69122Bcf57",
   abi: [
     "function balanceOf(address _owner) public view returns (uint256 balance)",
-    "function transfer(address _to, uint256 _value) public returns (bool success)",
+    "function buy(address _to, uint256 _value) public returns (bool success)",
   ],
 };
 
@@ -16,7 +16,7 @@ async function main() {
   const signer = provider.getSigner();
   let userAddress = await signer.getAddress();
   document.getElementById("userAddress").innerText =
-    userAddress;
+    userAddress.split(0,16);
 
   /*======
     INITIALIZING CONTRACT
@@ -24,7 +24,7 @@ async function main() {
   const usdcContract = new ethers.Contract(usdc.address, usdc.abi, signer);
 
   let usdcBalance = await usdcContract.balanceOf(userAddress);
-  usdcBalance = ethers.utils.formatUnits(usdcBalance, 6);
+  usdcBalance = ethers.utils.formatUnits(usdcBalance, 0);
   document.getElementById("usdcBalance").innerText = usdcBalance;
 }
 main();
