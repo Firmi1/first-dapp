@@ -16,7 +16,7 @@ async function main() {
   const signer = provider.getSigner();
   let userAddress = await signer.getAddress();
   document.getElementById("userAddress").innerText =
-    userAddress.split(0,16);
+    userAddress.slice(0,16);
 
   /*======
     INITIALIZING CONTRACT
